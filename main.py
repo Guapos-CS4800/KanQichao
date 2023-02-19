@@ -8,4 +8,8 @@ CORS(app)
 def hello_world():
     return "hello world!"
 
+@app.route('/dong')
+def goodbye_world():
+    return "Our messiah."
+
 app.run(host = "0.0.0.0")
