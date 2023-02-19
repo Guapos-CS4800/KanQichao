@@ -12,4 +12,9 @@ def hello_world():
 def goodbye_world():
     return "Our messiah."
 
+
+@app.route('/qichao')
+def brandonTest():
+    return "Our Savior."
+
 app.run(host = "0.0.0.0")
