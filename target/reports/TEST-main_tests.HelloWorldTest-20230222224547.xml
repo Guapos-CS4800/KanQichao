@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="main_tests.HelloWorldTest-20230222224547" tests="1" file="main_tests.py" time="0.004" timestamp="2023-02-22T22:45:48" failures="0" errors="1" skipped="0">
+	<testcase classname="main_tests.HelloWorldTest" name="test_should_issue_hello_world_message" time="0.004" timestamp="2023-02-22T22:45:48">
+		<error type="TypeError" message="unitTest() takes 0 positional arguments but 1 was given"><![CDATA[Traceback (most recent call last):
+  File "C:\Users\Brandon Local\AppData\Local\Programs\Python\Python310\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+  File "C:\Users\Brandon Local\AppData\Local\Programs\Python\Python310\lib\unittest\case.py", line 591, in run
+    self._callTestMethod(testMethod)
+  File "C:\Users\Brandon Local\AppData\Local\Programs\Python\Python310\lib\unittest\case.py", line 549, in _callTestMethod
+    method()
+  File "c:\users\brandon local\desktop\cpp\spring 2023\swe\kanqichao\src\unittest\python\main_tests.py", line 10, in test_should_issue_hello_world_message
+    unitTest(out)
+TypeError: unitTest() takes 0 positional arguments but 1 was given
+]]></error>
+	</testcase>
+</testsuite>

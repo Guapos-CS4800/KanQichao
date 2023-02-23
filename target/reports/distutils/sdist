@@ -1,0 +1,33 @@
+running clean
+'build\lib' does not exist -- can't clean it
+'build\bdist.win-amd64' does not exist -- can't clean it
+'build\scripts-3.10' does not exist -- can't clean it
+running sdist
+running egg_info
+creating KanQichao.egg-info
+writing KanQichao.egg-info\PKG-INFO
+writing dependency_links to KanQichao.egg-info\dependency_links.txt
+writing namespace_packages to KanQichao.egg-info\namespace_packages.txt
+writing top-level names to KanQichao.egg-info\top_level.txt
+writing manifest file 'KanQichao.egg-info\SOURCES.txt'
+reading manifest file 'KanQichao.egg-info\SOURCES.txt'
+writing manifest file 'KanQichao.egg-info\SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+creating KanQichao-1.0.dev0
+creating KanQichao-1.0.dev0\KanQichao.egg-info
+copying files to KanQichao-1.0.dev0...
+copying helloWorld.py -> KanQichao-1.0.dev0
+copying main.py -> KanQichao-1.0.dev0
+copying setup.py -> KanQichao-1.0.dev0
+copying KanQichao.egg-info\PKG-INFO -> KanQichao-1.0.dev0\KanQichao.egg-info
+copying KanQichao.egg-info\SOURCES.txt -> KanQichao-1.0.dev0\KanQichao.egg-info
+copying KanQichao.egg-info\dependency_links.txt -> KanQichao-1.0.dev0\KanQichao.egg-info
+copying KanQichao.egg-info\namespace_packages.txt -> KanQichao-1.0.dev0\KanQichao.egg-info
+copying KanQichao.egg-info\top_level.txt -> KanQichao-1.0.dev0\KanQichao.egg-info
+copying KanQichao.egg-info\zip-safe -> KanQichao-1.0.dev0\KanQichao.egg-info
+Writing KanQichao-1.0.dev0\setup.cfg
+creating dist
+Creating tar archive
+removing 'KanQichao-1.0.dev0' (and everything under it)
