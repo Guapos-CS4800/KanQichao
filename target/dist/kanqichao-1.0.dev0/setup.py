@@ -46,7 +46,8 @@ if __name__ == '__main__':
         namespace_packages = [],
         py_modules = [
             'helloWorld',
-            'main'
+            'main',
+            'test'
         ],
         entry_points = {},
         data_files = [],

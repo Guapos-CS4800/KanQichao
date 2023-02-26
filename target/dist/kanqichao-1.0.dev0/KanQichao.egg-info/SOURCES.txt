@@ -1,6 +1,7 @@
 helloWorld.py
 main.py
 setup.py
+test.py
 KanQichao.egg-info/PKG-INFO
 KanQichao.egg-info/SOURCES.txt
 KanQichao.egg-info/dependency_links.txt

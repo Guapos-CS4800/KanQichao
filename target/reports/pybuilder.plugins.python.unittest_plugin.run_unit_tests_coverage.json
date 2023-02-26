@@ -61,9 +61,28 @@
       "module": "main",
       "sum_lines": 17,
       "sum_lines_not_covered": 17
+    },
+    {
+      "branches": 0,
+      "branches_missing": 0,
+      "branches_partial": 0,
+      "coverage": 0.0,
+      "lines": [
+        1,
+        2,
+        4
+      ],
+      "lines_not_covered": [
+        1,
+        2,
+        4
+      ],
+      "module": "test",
+      "sum_lines": 3,
+      "sum_lines_not_covered": 3
     }
   ],
   "overall_branch_coverage": 0.0,
   "overall_branch_partial_coverage": 100.0,
-  "overall_coverage": 15.0
+  "overall_coverage": 13.043478260869565
 }

@@ -9,6 +9,7 @@ creating build
 creating build\lib
 copying helloWorld.py -> build\lib
 copying main.py -> build\lib
+copying test.py -> build\lib
 c:\users\brandon local\desktop\cpp\spring 2023\swe\kanqichao\.pybuilder\plugins\cpython-3.10.2.final.0\lib\site-packages\setuptools\command\install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
   warnings.warn(
 installing to build\bdist.win-amd64\wheel
@@ -18,6 +19,7 @@ creating build\bdist.win-amd64
 creating build\bdist.win-amd64\wheel
 copying build\lib\helloWorld.py -> build\bdist.win-amd64\wheel\.
 copying build\lib\main.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\test.py -> build\bdist.win-amd64\wheel\.
 running install_egg_info
 running egg_info
 writing KanQichao.egg-info\PKG-INFO
@@ -32,6 +34,7 @@ creating build\bdist.win-amd64\wheel\KanQichao-1.0.dev0.dist-info\WHEEL
 creating 'dist\KanQichao-1.0.dev0-py3-none-any.whl' and adding 'build\bdist.win-amd64\wheel' to it
 adding 'helloWorld.py'
 adding 'main.py'
+adding 'test.py'
 adding 'KanQichao-1.0.dev0.dist-info/METADATA'
 adding 'KanQichao-1.0.dev0.dist-info/WHEEL'
 adding 'KanQichao-1.0.dev0.dist-info/namespace_packages.txt'
