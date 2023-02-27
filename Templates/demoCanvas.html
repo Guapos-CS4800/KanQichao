@@ -11,6 +11,7 @@
         currX = 0,
         prevY = 0,
         currY = 0,
+        dataURL = "",
         dot_flag = false;
 
     var x = "black",
@@ -21,6 +22,8 @@
         ctx = canvas.getContext("2d");
         w = canvas.width;
         h = canvas.height;
+        dataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACAvzbMAAAOEUlEQVR4Xu3VsQ0AAAjDMPr/0/yQ2exdLKTsHAECBAgQCAILGxMCBAgQIHAC4gkIECBAIAkISGIzIkCAAAEB8QMECBAgkAQEJLEZESBAgICA+AECBAgQSAICktiMCBAgQEBA/AABAgQIJAEBSWxGBAgQICAgfoAAAQIEkoCAJDYjAgQIEBAQP0CAAAECSUBAEpsRAQIECAiIHyBAgACBJCAgic2IAAECBATEDxAgQIBAEhCQxGZEgAABAgLiBwgQIEAgCQhIYjMiQIAAAQHxAwQIECCQBAQksRkRIECAgID4AQIECBBIAgKS2IwIECBAQED8AAECBAgkAQFJbEYECBAgICB+gAABAgSSgIAkNiMCBAgQEBA"
+        
     
         canvas.addEventListener("mousemove", function (e) {
             findxy('move', e)
@@ -30,6 +33,8 @@
         }, false);
         canvas.addEventListener("mouseup", function (e) {
             findxy('up', e)
+            save();
+            
         }, false);
         canvas.addEventListener("mouseout", function (e) {
             findxy('out', e)
@@ -69,15 +74,35 @@
         var m = confirm("Want to clear");
         if (m) {
             ctx.clearRect(0, 0, w, h);
-            document.getElementById("canvasimg").style.display = "none";
+  
         }
+    }
+
+    function submitForm() {
+            var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) { // if the request is complete and successful
+                    document.getElementById("form-status").innerHTML = xhr.responseText; // update the form-status div element with the response from the server
+                }
+            };
+            var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
+            xhr.open("POST", "/submit", true); // set up the AJAX request
+            xhr.send(formData); // send the AJAX request with the form data
+        }
+    function preventRefresh(event){
+        
+        //Preventing page refresh
+        console.log("testing cheetos");
+        event.preventDefault();
+        console.log("testing cheetos");
+        return false;
     }
     
     function save() {
-        document.getElementById("canvasimg").style.border = "2px solid";
+        
         var dataURL = canvas.toDataURL();
-        document.getElementById("canvasimg").src = dataURL;
-        document.getElementById("canvasimg").style.display = "inline";
+        console.log(dataURL);
+        submitForm();
     }
     
     function findxy(res, e) {
@@ -129,7 +154,12 @@
             <input type="button" value="clear" id="clr" size="23" onclick="erase()">
         
         </div>
-        <img id="canvasimg" style="" style="display:none;">
+        <form onsubmit="return false" id="imageURLForm" action="" method=""  >
+            <input type="submit" value="">
+
+            
+        </form>
+
         
         
     </body>
