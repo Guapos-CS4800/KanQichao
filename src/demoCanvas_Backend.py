@@ -4,12 +4,12 @@ from flask_cors import CORS
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
-@app.route('/')
+@app.route('/draw')
 def index():
     return render_template('index.html')
 
 
-@app.route('/draw', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def draw():
 
     if request.method == 'POST':
