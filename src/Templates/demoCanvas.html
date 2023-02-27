@@ -89,19 +89,13 @@
             xhr.open("POST", "/submit", true); // set up the AJAX request
             xhr.send(formData); // send the AJAX request with the form data
         }
-    function preventRefresh(event){
-        
-        //Preventing page refresh
-        console.log("testing cheetos");
-        event.preventDefault();
-        console.log("testing cheetos");
-        return false;
-    }
     
     function save() {
         
-        var dataURL = canvas.toDataURL();
+        let dataURL = canvas.toDataURL();
         console.log(dataURL);
+        document.getElementById("testingID").value = dataURL;
+
         submitForm();
     }
     
@@ -155,7 +149,8 @@
         
         </div>
         <form onsubmit="return false" id="imageURLForm" action="./draw" method=""  >
-            <input type="submit" value="">
+            <input id="testingID" name="testing" >
+            
 
             
         </form>
