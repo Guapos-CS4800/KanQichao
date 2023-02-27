@@ -19,4 +19,9 @@ def draw():
     else:
         return render_template('demoCanvas.html')
 
+@app.route('/submit', methods=['GET','POST'])
+def cheetos():
+    if request.method =='POST':
+        return 'I AM IN SUBMIT'
+
 app.run(host = "0.0.0.0")

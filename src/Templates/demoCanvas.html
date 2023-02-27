@@ -81,9 +81,9 @@
     function submitForm() {
             var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) { // if the request is complete and successful
-                    document.getElementById("form-status").innerHTML = xhr.responseText; // update the form-status div element with the response from the server
-                }
+                // if (xhr.readyState === 4 && xhr.status === 200) { // if the request is complete and successful
+                //     document.getElementById("form-status").innerHTML = xhr.responseText; // update the form-status div element with the response from the server
+                // }
             };
             var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
             xhr.open("POST", "/submit", true); // set up the AJAX request
