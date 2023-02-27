@@ -22,6 +22,14 @@ def draw():
 @app.route('/submit', methods=['GET','POST'])
 def cheetos():
     if request.method =='POST':
-        return 'I AM IN SUBMIT'
+        img = request.form.get('imageURLForm')
+        print(img)
+
+        # FILE_WRITE = open("draw.txt", 'w')
+        # FILE_WRITE.write(img)
+        # FILE_WRITE.close()
+
+        return "POST RECIEVED"
+
 
 app.run(host = "0.0.0.0")
