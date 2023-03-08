@@ -1,4 +1,18 @@
 import deeplake
-ds = deeplake.load("hub://activeloop/kuzushiji-kanji")
+import numpy
+from matplotlib import pyplot as plt
+
+ds = deeplake.load('hub://udayuppal/kuzushiji-kanji')
+
+print('--------data loaded--------')
+
+
+img = ds.images[0:100].numpy()
+
+
+# plt.imshow(img, interpolation='nearest')
+# plt.show()
 
 dataloader = ds.tensorflow()
+
+print(dataloader)
