@@ -14,5 +14,5 @@ img = ds.images[0:100].numpy()
 # plt.show()
 
 dataloader = ds.tensorflow()
-
-print(dataloader)
+iterator = iter(dataloader)
+print(iterator.get_next())
