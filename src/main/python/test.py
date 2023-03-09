@@ -1,5 +1,6 @@
 import deeplake
 import numpy
+import tensorflow as tf
 from matplotlib import pyplot as plt
 
 ds = deeplake.load('hub://udayuppal/kuzushiji-kanji')
@@ -14,5 +15,7 @@ img = ds.images[0:100].numpy()
 # plt.show()
 
 dataloader = ds.tensorflow()
+
 iterator = iter(dataloader)
-print(iterator.get_next())
+while(True):
+    print(iterator.get_next())
