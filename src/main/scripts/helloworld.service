@@ -1,0 +1,11 @@
+[Unit]
+Description=Gunicorn instance for a simple hello world app
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/app
+ExecStart=/home/ubuntu/app/venv/bin/gunicorn -b localhost:8000 demoCanvas_Backend:app
+Restart=always
+[Install]
+WantedBy=multi-user.target

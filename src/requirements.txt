@@ -1,0 +1,12 @@
+mockito
+flask
+flask_cors
+
+numpy
+tensorflow
+keras
+sklearn
+
+deeplake
+
+matplotlib
