@@ -6,12 +6,12 @@ import base64
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
-@app.route('/draw')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/draw', methods=['GET', 'POST'])
 def draw():
 
     if request.method == 'POST':
@@ -35,5 +35,5 @@ def cheetos():
 
         return "POST RECIEVED"
 
-
-app.run(host = "0.0.0.0")
+if __name__ == '__main__':
+    app.run(host = "0.0.0.0")

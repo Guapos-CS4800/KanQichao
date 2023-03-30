@@ -1,0 +1,11 @@
+Modify /etc/nginx/sites-available/default
+
+with the following changes
+
+upstream flaskhelloworld {
+    server 127.0.0.1:8000;
+}
+
+location / {
+    proxy_pass http://flaskhelloworld;
+}

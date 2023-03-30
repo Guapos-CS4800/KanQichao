@@ -7,7 +7,7 @@ import sys
 
 
 
-def loadDeeplakeSet(sys):
+def loadDeeplakeSet(out):
     ds = deeplake.load('hub://udayuppal/kuzushiji-kanji')
 
     out.write('--------data loaded--------')
