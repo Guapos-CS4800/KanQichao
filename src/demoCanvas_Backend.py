@@ -30,7 +30,7 @@ def cheetos():
         FILE_WRITE.close()
 
         #TODO: Make decoder for IMG URL to IMG
-        with open('sample.png', 'wb') as f:
+        with open('sample.jpg', 'wb') as f:
             f.write(base64.decodebytes(img.split(',')[1].encode()))
 
         return "POST RECIEVED"
