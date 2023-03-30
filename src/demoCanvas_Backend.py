@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
-
+import subprocess
 import base64
 
 app = Flask(__name__, static_url_path='/static')
@@ -32,6 +32,14 @@ def cheetos():
         #TODO: Make decoder for IMG URL to IMG
         with open('sample.jpg', 'wb') as f:
             f.write(base64.decodebytes(img.split(',')[1].encode()))
+        
+        subprocess.run(["python", "../classifier/classifyimage.py"])
+        
+        f = open("../classifier/predictedkanji.txt", "r", encoding='utf-8')
+        line_list = f.readlines()
+        for line in line_list:
+            print('dead' + line)
+
 
         return "POST RECIEVED"
 
