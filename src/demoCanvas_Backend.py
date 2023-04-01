@@ -22,6 +22,16 @@ def draw():
 
 @app.route('/submit', methods=['GET','POST'])
 def cheetos():
+    if request.method =="GET":
+        print('SUBMIT URL: IN GET METHOD')
+
+        f = open("../classifier/predictedkanji.txt", "r", encoding='utf-8')
+        line_list = f.readlines()
+        res = ""
+        for line in line_list:
+            res += line
+        return res
+
     if request.method =='POST':
         img = request.form.get('testing')
 
@@ -38,7 +48,7 @@ def cheetos():
         f = open("../classifier/predictedkanji.txt", "r", encoding='utf-8')
         line_list = f.readlines()
         for line in line_list:
-            print('dead' + line)
+            print('List of Kanji: ' + line)
 
 
         return "POST RECIEVED"

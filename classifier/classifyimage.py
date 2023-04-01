@@ -34,6 +34,8 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
 
+
+
 # my_dir = "../classifier/hate"
 # #Dummy black image/label to setup the ndarray
 # imgs = np.zeros((64,64), np.uint8).reshape(1,64,64) 
@@ -56,6 +58,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def load(f):
     return np.load(f, allow_pickle=True)['arr_0']
+
+
 
 X = load('../classifier/content/kkanji-imgs.npz')
 Y = load('../classifier/content/kkanji-labels.npz') 
@@ -107,7 +111,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
   subset="training",
   seed=123,
   image_size=(img_height, img_width),
-  batch_size=batch_size)
+  batch_size=batch_size,)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
   '../classifier/kanji_dataset',
@@ -116,7 +120,7 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
   subset="validation",
   seed=123,
   image_size=(img_height, img_width),
-  batch_size=batch_size)
+  batch_size=batch_size,)
 
 class_names = train_ds.class_names
 
@@ -128,8 +132,6 @@ AUTOTUNE = tf.data.AUTOTUNE
 
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
-
-
 
 
 
@@ -163,7 +165,7 @@ val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 # model.compile(optimizer='adam',
 #               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
 #               metrics=['accuracy'])
-# # model.summary()
+# # # model.summary()
 
 # epochs=5
 # history = model.fit(
@@ -172,11 +174,9 @@ val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 #   epochs=epochs
 # )
 
-# model.save('./saved_model')
+# model.save('../classifier/saved_model')
+
 reconstructed_model = keras.models.load_model("../classifier/saved_model")
-
-
-
 
 
 # acc = history.history['accuracy']
@@ -201,7 +201,6 @@ reconstructed_model = keras.models.load_model("../classifier/saved_model")
 # plt.title('Training and Validation Loss')
 # plt.show()
 
-
 for i in range(1):
   # print('start')  
 
@@ -216,13 +215,9 @@ for i in range(1):
 
   )
 
-
-
   # img.show()
   
 
-  
-  
   img_array = tf.keras.utils.img_to_array(img)
  
   x = np.unique(img_array)
@@ -234,33 +229,37 @@ for i in range(1):
 
   predictions = reconstructed_model.predict(img_array)
   score = tf.nn.softmax(predictions[0])
-  print(score)
-
-  print(class_names)
-
+  
+  print('---------------------')
+  print("Possible Classes:", class_names)
+  print('---------------------')
 
   print(
       "This image most likely belongs to {} with a {:.2f} percent confidence."
       .format(class_names[np.argmax(score)], 100 * np.max(score))
   )
+
   temp = np.argpartition(-score, 10)
   result_args = temp[:10]
-  print(result_args)
+
   temp = np.partition(-score, 10)
   result = -temp[:10]
-  print(result)
 
-  laugh = ''
+  confList = []
+  for index, conf in zip(result_args, result):
+    confList.append((conf, index))
 
-  for index in result_args:
-    
-     laugh += class_names[index]
-  temp = np.partition(-score, 10)
-  result = -temp[:10]
-  print(laugh)
+  print('---------------------')  
+  values = sorted(confList,key=lambda x: x[0], reverse=True)
+  print(values)
+  print('---------------------')
+
+  topTen = ''
+  for conf, index in values:
+    topTen += class_names[index] + ' '
   
   with open("../classifier/predictedkanji.txt", "w", encoding='utf-8') as f:
-    print(laugh, file=f)
+    print(topTen, file=f)
     
 
 # score = reconstructed_model.evaluate(x_test, y_test,  verbose = 0) 

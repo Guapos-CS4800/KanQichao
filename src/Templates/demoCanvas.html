@@ -14,12 +14,21 @@
         dataURL = "",
         dot_flag = false;
 
-    var x = "black",
-        y = 2;
+    var x = "white",
+        y = 10;
     
     function init() {
+    
+        buttons.forEach((button, index) => {
+            button.textContent = index+1;
+        });
+
+
         canvas = document.getElementById('can');
         ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
+        ctx.rect(0,0,400,400);
+        ctx.fill();
         w = canvas.width;
         h = canvas.height;
         dataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACAvzbMAAAOEUlEQVR4Xu3VsQ0AAAjDMPr/0/yQ2exdLKTsHAECBAgQCAILGxMCBAgQIHAC4gkIECBAIAkISGIzIkCAAAEB8QMECBAgkAQEJLEZESBAgICA+AECBAgQSAICktiMCBAgQEBA/AABAgQIJAEBSWxGBAgQICAgfoAAAQIEkoCAJDYjAgQIEBAQP0CAAAECSUBAEpsRAQIECAiIHyBAgACBJCAgic2IAAECBATEDxAgQIBAEhCQxGZEgAABAgLiBwgQIEAgCQhIYjMiQIAAAQHxAwQIECCQBAQksRkRIECAgID4AQIECBBIAgKS2IwIECBAQED8AAECBAgkAQFJbEYECBAgICB+gAABAgSSgIAkNiMCBAgQEBA"
@@ -73,22 +82,44 @@
     function erase() {
         var m = confirm("Want to clear");
         if (m) {
-            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = "black";
+            ctx.rect(0, 0, 400, 400);
+            ctx.fill();
   
         }
     }
 
     function submitForm() {
             var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
-            xhr.onreadystatechange = function() {
-                // if (xhr.readyState === 4 && xhr.status === 200) { // if the request is complete and successful
-                //     document.getElementById("form-status").innerHTML = xhr.responseText; // update the form-status div element with the response from the server
-                // }
-            };
+            
             var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
             xhr.open("POST", "/submit", true); // set up the AJAX request
             xhr.send(formData); // send the AJAX request with the form data
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    receiveForm()
+                }
+            }
         }
+
+    function receiveForm(){
+        var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
+            
+        xhr.open("GET", "/submit", true);
+        xhr.send(null);
+        
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                const topTenStr = xhr.responseText;
+                const topTenArray = topTenStr.split(" ");
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].textContent = topTenArray[i];
+                }
+            }
+        }
+    }
     
     function save() {
         
@@ -136,14 +167,14 @@
 
         <div class="drawing-utensil-row">
 
-            <div id="black" onclick="color(this)">
-                <img id="black" src="https://iphoto.mac89.com/icon/icon/256/20201130/100656/4094778.png" alt="" >
+            <div id="white" onclick="color(this)">
+                <img id="white" src="https://iphoto.mac89.com/icon/icon/256/20201130/100656/4094778.png" alt="" >
 
 
             </div>
          
-            <div id="white" onclick="color(this)">
-                <img id="white" src="https://cdn.iconscout.com/icon/free/png-256/eraser-81-444685.png" alt="" >
+            <div id="black" onclick="color(this)">
+                <img id="black" src="https://cdn.iconscout.com/icon/free/png-256/eraser-81-444685.png" alt="" >
             </div>
             <input type="button" value="clear" id="clr" size="23" onclick="erase()">
         
@@ -155,7 +186,31 @@
             
         </form>
 
-        
-        
+        <button id="button1">Button 1</button>
+        <button id="button2">Button 2</button>
+        <button id="button3">Button 3</button>
+        <button id="button4">Button 4</button>
+        <button id="button5">Button 5</button>
+        <button id="button6">Button 6</button>
+        <button id="button7">Button 7</button>
+        <button id="button8">Button 8</button>
+        <button id="button9">Button 9</button>
+        <button id="button10">Button 10</button>
+
+    <script>
+        buttons = [
+        document.getElementById("button1"),
+        document.getElementById("button2"),
+        document.getElementById("button3"),
+        document.getElementById("button4"),
+        document.getElementById("button5"),
+        document.getElementById("button6"),
+        document.getElementById("button7"),
+        document.getElementById("button8"),
+        document.getElementById("button9"),
+        document.getElementById("button10")
+      ];
+    </script>
+        </script>        
     </body>
-    </html>
+</html>
