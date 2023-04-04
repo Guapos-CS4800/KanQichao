@@ -3,6 +3,7 @@ from flask_cors import CORS
 import subprocess
 import base64
 
+
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
@@ -33,8 +34,9 @@ def cheetos():
         return res
 
     if request.method =='POST':
-        img = request.form.get('testing')
-
+        img = request.get_json()
+        img = img['testing']
+        
         FILE_WRITE = open("user_drawings/draw.txt", 'w')
         FILE_WRITE.write(img)
         FILE_WRITE.close()
@@ -50,8 +52,8 @@ def cheetos():
         for line in line_list:
             print('List of Kanji: ' + line)
 
+        return "OK"
 
-        return "POST RECIEVED"
 
 if __name__ == '__main__':
     app.run(host = "0.0.0.0")

@@ -93,8 +93,17 @@
             var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
             
             var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
+
+
+            var object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+            var json = JSON.stringify(object);
+
             xhr.open("POST", "/submit", true); // set up the AJAX request
-            xhr.send(formData); // send the AJAX request with the form data
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(json); // send the AJAX request with the form data
 
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4 && xhr.status == 200){
@@ -124,7 +133,7 @@
     function save() {
         
         let dataURL = canvas.toDataURL();
-        console.log(dataURL);
+        //console.log(dataURL);
         document.getElementById("testingID").value = dataURL;
 
         submitForm();
@@ -179,7 +188,7 @@
             <input type="button" value="clear" id="clr" size="23" onclick="erase()">
         
         </div>
-        <form onsubmit="return false" id="imageURLForm" action="./draw" method=""  >
+        <form onsubmit="return true" id="imageURLForm" action="./draw" method=""  >
             <input id="testingID" name="testing" >
             
 
