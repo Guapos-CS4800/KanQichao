@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="main_tests.HelloWorldTest-20230222225107" tests="1" file="main_tests.py" time="0.001" timestamp="2023-02-22T22:51:08" failures="0" errors="0" skipped="0">
-	<testcase classname="main_tests.HelloWorldTest" name="test_should_issue_hello_world_message" time="0.001" timestamp="2023-02-22T22:51:08"/>
-</testsuite>

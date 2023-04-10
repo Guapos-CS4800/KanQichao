@@ -1,3 +1,0 @@
-helloWorld
-main
-test
