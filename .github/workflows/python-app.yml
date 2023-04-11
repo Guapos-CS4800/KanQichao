@@ -31,10 +31,20 @@ jobs:
     - name: Copy Files
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ec2-54-219-163-12.us-west-1.compute.amazonaws.com
-        username: ubuntu
-        port: 22
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         source: "src/*"
-        target: "~/KanQichao/src/"
+        target: "~/KanQichao/"
+    - name: Execute Reboot of Server
+      uses: appleboy/ssh-action@v0.1.9
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          sudo systemctl stop helloworld
+          sudo systemctl start helloworld
 
