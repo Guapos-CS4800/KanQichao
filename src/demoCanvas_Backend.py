@@ -11,6 +11,10 @@ CORS(app)
 def index():
     return render_template('index.html')
 
+@app.route('/easter')
+def easter():
+    return "Test CI/CD"
+
 
 @app.route('/draw', methods=['GET', 'POST'])
 def draw():
