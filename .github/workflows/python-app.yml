@@ -31,7 +31,7 @@ jobs:
     - name: Copy Files
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ubuntu@ec2-54-219-163-12.us-west-1.compute.amazonaws.com
+        host: ec2-54-219-163-12.us-west-1.compute.amazonaws.com
         username: ubuntu
         port: 22
         key: ${{ secrets.KEY }}
