@@ -36,5 +36,5 @@ jobs:
         port: 22
         key: ${{ secrets.KEY }}
         source: "src/*"
-        target: "~/KanQichao/src/"
+        target: "~/KanQichao/"
 
