@@ -2,9 +2,6 @@
 import matplotlib.pyplot as plt
 # %matplotlib inline
 
-# tqdm_notebook
-from tqdm import tqdm_notebook
-
 # os
 import os
 

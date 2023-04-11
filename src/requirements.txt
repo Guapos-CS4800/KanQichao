@@ -4,7 +4,6 @@ numpy
 tensorflow-cpu
 keras
 scikit-learn
-tqdm
 pandas
 matplotlib
 pathlib
