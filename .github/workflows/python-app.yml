@@ -35,7 +35,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "src"
+        source: "src/*"
         target: "~/ooga"
 #     - name: Execute Reboot of Server
 #       uses: appleboy/ssh-action@v0.1.9
