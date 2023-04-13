@@ -31,7 +31,7 @@ jobs:
     - name: Copy Files
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ubuntu@ec2-18-144-54-211.us-west-1.compute.amazonaws.com
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.KEY }}
         key: ${{ secrets.KEY }}
@@ -40,7 +40,7 @@ jobs:
     - name: Execute Reboot of Server
       uses: appleboy/ssh-action@v0.1.9
       with:
-        host: ubuntu@ec2-18-144-54-211.us-west-1.compute.amazonaws.com
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
