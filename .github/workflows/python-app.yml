@@ -28,22 +28,22 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Copy Files
+    - name: copy file via ssh key
       uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.KEY }}
-        key: ${{ secrets.KEY }}
-        source: "src/*"
-        target: "~/ooga"
-    - name: Execute Reboot of Server
-      uses: appleboy/ssh-action@v0.1.9
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        script: |
-          sudo systemctl stop helloworld
-          sudo systemctl start helloworld
+        source: "src"
+        target: "~/ooga"
+#     - name: Execute Reboot of Server
+#       uses: appleboy/ssh-action@v0.1.9
+#       with:
+#         host: ${{ secrets.HOST }}
+#         username: ${{ secrets.USERNAME }}
+#         port: ${{ secrets.PORT }}
+#         key: ${{ secrets.KEY }}
+#         script: |
+#           sudo systemctl stop helloworld
+#           sudo systemctl start helloworld
