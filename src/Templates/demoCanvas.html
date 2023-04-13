@@ -98,12 +98,15 @@
             var object = {};
             formData.forEach(function(value, key){
                 object[key] = value;
-            });
+            })
+          
             var json = JSON.stringify(object);
 
             xhr.open("POST", "/submit", true); // set up the AJAX request
             xhr.setRequestHeader('Content-Type', 'application/json');
+           
             xhr.send(json); // send the AJAX request with the form data
+            
 
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4 && xhr.status == 200){

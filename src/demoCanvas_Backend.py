@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
-import classifier.classifyimage as classify
+import subprocess
 import base64
 
 
@@ -10,10 +10,6 @@ CORS(app)
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/easter')
-def easter():
-    return "Test CI/CD"
 
 
 @app.route('/draw', methods=['GET', 'POST'])
@@ -30,7 +26,7 @@ def cheetos():
     if request.method =="GET":
         print('SUBMIT URL: IN GET METHOD')
 
-        f = open("classifier/predictedkanji.txt", "r", encoding='utf-8')
+        f = open("../classifier/predictedkanji.txt", "r", encoding='utf-8')
         line_list = f.readlines()
         res = ""
         for line in line_list:
@@ -49,11 +45,9 @@ def cheetos():
         with open('sample.jpg', 'wb') as f:
             f.write(base64.decodebytes(img.split(',')[1].encode()))
         
-        #subprocess.run(["python", "classifier/classifyimage.py"])
-        classify.main()
-
-
-        f = open("classifier/predictedkanji.txt", "r", encoding='utf-8')
+        subprocess.run(["python", "../classifier/classifyimage.py"])
+        
+        f = open("../classifier/predictedkanji.txt", "r", encoding='utf-8')
         line_list = f.readlines()
         for line in line_list:
             print('List of Kanji: ' + line)
