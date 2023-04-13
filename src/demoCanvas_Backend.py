@@ -13,6 +13,10 @@ CORS(app)
 def index():
     return render_template('index.html')
 
+@app.route('/dong')
+def index():
+    return 'Hello World'
+
 
 @app.route('/draw', methods=['GET', 'POST'])
 def draw():
