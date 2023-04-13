@@ -1,12 +1,10 @@
-mockito
 flask
 flask_cors
-
 numpy
-tensorflow
+tensorflow-cpu
 keras
-sklearn
-
-deeplake
-
+scikit-learn
+pandas
 matplotlib
+pathlib
+Pillow
