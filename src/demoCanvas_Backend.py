@@ -14,7 +14,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/dong')
-def index():
+def dong():
     return 'Hello World'
 
 
