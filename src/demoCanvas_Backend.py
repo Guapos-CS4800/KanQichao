@@ -6,7 +6,7 @@ import base64
 import classifier.classifyimage as classify
 
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, template_folder='Templates', static_url_path='/static')
 CORS(app)
 
 @app.route('/')
