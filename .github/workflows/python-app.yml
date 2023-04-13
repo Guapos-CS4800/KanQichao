@@ -31,9 +31,9 @@ jobs:
     - name: copy file via ssh key
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
+        host: ubuntu@ec2-18-144-54-211.us-west-1.compute.amazonaws.com
+        username: ubuntu
+        port: 22
         key: ${{ secrets.KEY }}
         source: "src/*"
         target: "~/ooga"
