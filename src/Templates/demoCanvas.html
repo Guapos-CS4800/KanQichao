@@ -145,18 +145,27 @@
         let json =  JSON.stringify(kanjiObject)
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(json);
-
-
-        
-
         xhr.onreadystatechange = function(){
             
                 if(xhr.readyState == 4 && xhr.status == 200){
-                    console.log('sent kanji back');
+                    receiveKanji();
                 }
         }
         
+    }
 
+    function receiveKanji(){
+        var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
+            
+        xhr.open("GET", "/display", true);
+        xhr.send(null);
+        
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                const data = xhr.responseText;
+                console.log(data);
+            }
+        }
     }
     
     function save() {
