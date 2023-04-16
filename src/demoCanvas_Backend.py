@@ -60,6 +60,13 @@ def cheetos():
 
         return "OK"
 
+@app.route('/display', methods=['GET','POST'])
+def displayKanjiInformation():
+    if request.method == "POST":
+        sentKanji = request.get_json()
+        print(sentKanji['kanji'])
+        return 'dong'
+
 
 if __name__ == '__main__':
     app.run(host = "0.0.0.0")
