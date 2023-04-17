@@ -6,16 +6,20 @@ def getInfo(character):
 
     response = requests.get(url)
 
+    #All the data to be packaged later to send back
     japaneseChar, strokeCount, grade = "", "", ""
     jlptLevel, english, kunReading = "", "", ""
     onReading = ""
 
-
+    #Only attmpt to parse if data is not corrupt
     if response.status_code == 200:
 
         data = response.text
 
-
+        '''
+        Given html code list of readings
+        Parse the specific characters
+        '''
         def getReadingList(unparsed):
             res = []
             tmp = unparsed.split("</a>")

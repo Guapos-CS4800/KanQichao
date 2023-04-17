@@ -91,20 +91,24 @@ Main purpose is to generate relevant information to a specific kanji.
 @app.route('/display', methods=['GET','POST'])
 def displayKanjiInformation():
     if request.method == "POST":
+        #Get the character to process
         sentKanji = request.get_json()
         print(sentKanji['kanji'])
+        #Jisho Webscrape
         res = informer.getInfo(sentKanji['kanji'])
 
+        #Write the information to a file to grab later
         fileWrite = open("info.txt", "w", encoding='utf-8')
         fileWrite.write(str(res))
         fileWrite.close()
 
         return 'dong'
     if request.method == 'GET':
+        #Read the data, send back to front end
         fileRead = open("info.txt", "r", encoding="utf-8")
         res = fileRead.read()
         fileRead.close()
-        print(res)
+        
         return res
 
 
