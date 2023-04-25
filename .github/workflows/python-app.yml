@@ -36,7 +36,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         source: "src/*"
-        target: "~/test/"
+        target: "test/"
     - name: Execute Reboot of Server
       uses: appleboy/ssh-action@v0.1.9
       with:
