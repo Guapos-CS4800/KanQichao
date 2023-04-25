@@ -101,34 +101,38 @@ def main():
   img_height = 64
   img_width = 64
 
-  train_ds = tf.keras.utils.image_dataset_from_directory(
-    'classifier/kanji_dataset',
-    color_mode='grayscale',
-    validation_split=0.2,
-    subset="training",
-    seed=123,
-    image_size=(img_height, img_width),
-    batch_size=batch_size,)
+  # train_ds = tf.keras.utils.image_dataset_from_directory(
+  #   'classifier/kanji_dataset',
+  #   color_mode='grayscale',
+  #   validation_split=0.2,
+  #   subset="training",
+  #   seed=123,
+  #   image_size=(img_height, img_width),
+  #   batch_size=batch_size,)
 
-  val_ds = tf.keras.utils.image_dataset_from_directory(
-    'classifier/kanji_dataset',
-    validation_split=0.2,
-    color_mode='grayscale',
-    subset="validation",
-    seed=123,
-    image_size=(img_height, img_width),
-    batch_size=batch_size,)
+  # val_ds = tf.keras.utils.image_dataset_from_directory(
+  #   'classifier/kanji_dataset',
+  #   validation_split=0.2,
+  #   color_mode='grayscale',
+  #   subset="validation",
+  #   seed=123,
+  #   image_size=(img_height, img_width),
+  #   batch_size=batch_size,)
 
-  class_names = train_ds.class_names
+  #class_names = train_ds.class_names
+
+  folder = './classifier/kanji_dataset'
+
+  class_names = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
 
 
 
 
 
-  AUTOTUNE = tf.data.AUTOTUNE
+  # AUTOTUNE = tf.data.AUTOTUNE
 
-  train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
-  val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+  # train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
+  # val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 
 
