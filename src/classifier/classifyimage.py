@@ -230,13 +230,18 @@ def main():
     score = tf.nn.softmax(predictions[0])
     
     print('---------------------')
-    print("Possible Classes:", class_names)
+    print("Possible Classes:")
+    fileCharacters = open("fileCharacters.txt", "w", encoding='utf-8')
+    for name in class_names:
+        fileCharacters.write(name)
+        fileCharacters.write("\n")
+    fileCharacters.close()
     print('---------------------')
 
-    print(
-        "This image most likely belongs to {} with a {:.2f} percent confidence."
-        .format(class_names[np.argmax(score)], 100 * np.max(score))
-    )
+    # print(
+    #     "This image most likely belongs to {} with a {:.2f} percent confidence."
+    #     .format(class_names[np.argmax(score)], 100 * np.max(score))
+    # )
 
     temp = np.argpartition(-score, 10)
     result_args = temp[:10]
