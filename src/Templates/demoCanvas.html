@@ -3,6 +3,7 @@
 
         <link rel="stylesheet" href="../static/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <title>KanQichao</title>
     </head>
 
     <script type="text/javascript">
@@ -63,7 +64,7 @@
                 break;
         }
         if (x == "white") y = 14;
-        else y = 2;
+        else y = 20;
     
     }
     
@@ -90,30 +91,30 @@
     }
 
     function submitForm() {
-            var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
             
-            var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
+        var formData = new FormData(document.getElementById("imageURLForm")); // get the form data
 
 
-            var object = {};
-            formData.forEach(function(value, key){
-                object[key] = value;
-            })
+        var object = {};
+        formData.forEach(function(value, key){
+            object[key] = value;
+        })
           
-            var json = JSON.stringify(object);
+        var json = JSON.stringify(object);
 
-            xhr.open("POST", "/submit", true); // set up the AJAX request
-            xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.open("POST", "/submit", true); // set up the AJAX request
+        xhr.setRequestHeader('Content-Type', 'application/json');
            
-            xhr.send(json); // send the AJAX request with the form data
+        xhr.send(json); // send the AJAX request with the form data
             
 
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState == 4 && xhr.status == 200){
-                    receiveForm()
-                }
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                receiveForm()
             }
         }
+    }
     
     
     
@@ -209,60 +210,84 @@
     }
     </script>
     <body onload="init()">
-        
-        <canvas class = "can" id="can" width="400" height="400" ></canvas>
+        <div class="flex-container">
+            <div class="flex-item" id="left-item">
+                <canvas class = "can" id="can" width="400" height="400" ></canvas>
+                <div id='wrapper'>
+                    <button id="button1">Button 1</button>
+                    <button id="button2">Button 2</button>
+                    <button id="button3">Button 3</button>
+                    <button id="button4">Button 4</button>
+                    <button id="button5">Button 5</button>
+                    <button id="button6">Button 6</button>
+                    <button id="button7">Button 7</button>
+                    <button id="button8">Button 8</button>
+                    <button id="button9">Button 9</button>
+                    <button id="button10">Button 10</button>
+                </div>
+                
+                <div class="drawing-utensils-row">
+                    <div id="white" onclick="color(this)">
+                        <img id="white" src="https://iphoto.mac89.com/icon/icon/256/20201130/100656/4094778.png" alt="" >
+                    </div>
+                 
+                    <div id="black" onclick="color(this)">
+                        <img id="black" src="https://cdn.iconscout.com/icon/free/png-256/eraser-81-444685.png" alt="" >
+                    </div>
 
-        <div class="drawing-utensil-row">
-
-            <div id="white" onclick="color(this)">
-                <img id="white" src="https://iphoto.mac89.com/icon/icon/256/20201130/100656/4094778.png" alt="" >
-
-
+                    <input type="button" value="clear" id="clr" size="30" onclick="erase()">
+                
+                </div>
             </div>
-         
-            <div id="black" onclick="color(this)">
-                <img id="black" src="https://cdn.iconscout.com/icon/free/png-256/eraser-81-444685.png" alt="" >
+            <div class="flex-item" id="flex-item-right">
+                <div  id="flex-item-right-top-row">
+                    <img class="image-border" src="https://raw.githubusercontent.com/mistval/kanji_images/master/gifs/4e00.gif" alt="">
+                    <div>
+
+                    </div>
+
+
+                    <div id="top-right-row">
+
+                        <div id="kanji-jlpt-level-row">
+                            <label>Kanji: 一</label>
+                            <label>Stroke count: N</label>
+                            
+                            <!-- <label>JLTP Level: </label> -->
+                        </div>
+    
+                        <div id="grade-level-stroke-count-row">
+                            <label>Grade level: #</label>
+                            <label>JLTP Level:  #</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="flex-item-right-bottom-row">
+
+                <p>Meanings: below, down, descend, give, low, inferior</p>
+                <p>Kunyomi: ひと-, ひと.つ</p>
+                <p>Onyomi: イチ, イツ </p>
+                <p>For more information: <a href="https://jisho.org/search/%E4%B8%80%20%23kanji" target="_blank">  https://jisho.org/search/%E7%8D%84%20%23kanji</a></p>
             </div>
-            <input type="button" value="clear" id="clr" size="23" onclick="erase()">
-        
         </div>
-        <form onsubmit="return true" id="imageURLForm" action="./draw" method=""  >
-            <input id="testingID" name="testing" >
-            
+    </div>
+    <form onsubmit="return true" id="imageURLForm" action="./draw" method="">
+        <input type="hidden" id="testingID" name="testing">
+    </form>
+</div>
 
-            
-        </form>
-
-        <div id='wrapper'>
-            <button id="button1">Button 1</button>
-            <button id="button2">Button 2</button>
-            <button id="button3">Button 3</button>
-            <button id="button4">Button 4</button>
-            <button id="button5">Button 5</button>
-            <button id="button6">Button 6</button>
-            <button id="button7">Button 7</button>
-            <button id="button8">Button 8</button>
-            <button id="button9">Button 9</button>
-            <button id="button10">Button 10</button>
-        </div>
-        <script>
-            const wrapper = document.getElementById('wrapper');
-            wrapper.addEventListener('click', (event) => {
-            const isButton = event.target.nodeName === 'BUTTON';
-            if (!isButton) {
-                return;
-            }
-            console.log(event.target.textContent);
-            sendKanji(event.target.textContent);
-    
-    
-        });
-
-
-
-
-        </script>
-        
+<script>
+const wrapper = document.getElementById('wrapper');
+wrapper.addEventListener('click', (event) => {
+    const isButton = event.target.nodeName === 'BUTTON';
+        if (!isButton) {
+            return;
+        }
+        console.log(event.target.textContent);
+        sendKanji(event.target.textContent);
+    });
+    </script>
 
     <script>
         buttons = [
@@ -277,7 +302,7 @@
         document.getElementById("button9"),
         document.getElementById("button10")
       ];
-    </script>
-        </script>        
+      </script>
+      </script>        
     </body>
 </html>
