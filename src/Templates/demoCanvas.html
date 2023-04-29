@@ -149,13 +149,13 @@
         xhr.onreadystatechange = function(){
             
                 if(xhr.readyState == 4 && xhr.status == 200){
-                    receiveKanji();
+                    receiveKanji(sentKanji);
                 }
         }
         
     }
 
-    function receiveKanji(){
+    function receiveKanji(receivedKanji){
         var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object
             
         xhr.open("GET", "/display", true);
@@ -165,6 +165,44 @@
             if(xhr.readyState == 4 && xhr.status == 200){
                 const data = xhr.responseText;
                 console.log(data);
+                console.log('received kanji' + receivedKanji);
+                var kanjiSymbol = receivedKanji;
+                
+                var kanjilabel = 'Kanji: ';
+                var strokeCountLabel = 'Stroke count: ';
+
+                
+                splitData = data.split(', \'');
+                console.log(splitData)
+                // middle = firstSplit.slice(1, firstSplit.length);
+                // middleSplit = middle
+                // console.log(middle);
+
+                var decimalValue = receivedKanji.charCodeAt(0);
+                console.log(decimalValue);
+
+                hexString = decimalValue.toString(16);
+                console.log(hexString);
+
+                
+                
+                document.getElementById('kanji-gif').src = 'https://raw.githubusercontent.com/mistval/kanji_images/master/gifs/' + hexString + '.gif';
+                document.getElementById('kanji-label').innerHTML = kanjilabel + kanjiSymbol ? kanjilabel +  kanjiSymbol : 'N/A';
+                document.getElementById('stroke-count-label').innerHTML = strokeCountLabel + splitData[1] ? splitData[1] : 'N/A';
+                document.getElementById('grade-level-label').innerHTML = splitData[2] ? splitData[2] : 'N/A';
+                document.getElementById('jlpt-level-label').innerHTML = splitData[3] ? splitData[3] : 'N/A';
+                document.getElementById('meanings-paragraph').innerHTML = splitData[4] ? splitData[4] : 'N/A';
+                // document.getElementById('kunyomi-paragraph').innerHTML = middle[4] ? middle[4] : 'N/A';
+                // document.getElementById('onyomi-paragraph').innerHTML = middle[4] ? middle[4] : 'N/A';
+                
+                document.getElementById('more-information-paragraph').innerHTML = `For more information: <a href="https://jisho.org/search/${receivedKanji}%23kanji"  target=blank"</a> Jisho`;
+                
+
+                // <p id="meanings-paragraph">Meanings: below, down, descend, give, low, inferior</p>
+                // <p id="kunyomi-paragraph">Kunyomi: ひと-, ひと.つ</p>    
+                // <p id="onyomi-paragraph">Onyomi: イチ, イツ </p>
+                // <p id="more-information-paragraph">For more information: <a
+
             }
         }
     }
@@ -241,7 +279,7 @@
             </div>
             <div class="flex-item" id="flex-item-right">
                 <div  id="flex-item-right-top-row">
-                    <img class="image-border" src="https://raw.githubusercontent.com/mistval/kanji_images/master/gifs/4e00.gif" alt="">
+                    <img class="image-border"  id="kanji-gif" src="https://raw.githubusercontent.com/mistval/kanji_images/master/gifs/4e01.gif" alt="Gif of how to write the kanji">
                     <div>
 
                     </div>
@@ -250,25 +288,25 @@
                     <div id="top-right-row">
 
                         <div id="kanji-jlpt-level-row">
-                            <label>Kanji: 一</label>
-                            <label>Stroke count: N</label>
+                            <label id="kanji-label">Kanji: </label>
+                            <label id="stroke-count-label">Stroke count: </label>
                             
                             <!-- <label>JLTP Level: </label> -->
                         </div>
     
                         <div id="grade-level-stroke-count-row">
-                            <label>Grade level: #</label>
-                            <label>JLTP Level:  #</label>
+                            <label id="grade-level-label">Grade level: </label>
+                            <label id="jlpt-level-label">JLTP Level:  </label>
                         </div>
                     </div>
                 </div>
 
                 <div id="flex-item-right-bottom-row">
 
-                <p>Meanings: below, down, descend, give, low, inferior</p>
-                <p>Kunyomi: ひと-, ひと.つ</p>
-                <p>Onyomi: イチ, イツ </p>
-                <p>For more information: <a href="https://jisho.org/search/%E4%B8%80%20%23kanji" target="_blank">  https://jisho.org/search/%E7%8D%84%20%23kanji</a></p>
+                <p id="meanings-paragraph">Meanings: </p>
+                <p id="kunyomi-paragraph">Kunyomi: ひと-, ひと.つ</p>
+                <p id="onyomi-paragraph">Onyomi: イチ, イツ </p>
+                <p id="more-information-paragraph">For more information: <a href="https://jisho.org" target="_blank"> Jisho</a></p>
             </div>
         </div>
     </div>
