@@ -5,6 +5,8 @@
     align-items: center;
     width: 100 px;
 }
+
+
   
 .button {
     background-color: #4CAF50; /* Green */
@@ -24,4 +26,15 @@
   
   .button1:hover {
     background-color: #55c2da;
+  }
+
+
+  .rowNames {
+    display: flex;
+  }
+  
+  .columnNames
+  {
+    flex: 33.33%;
+    padding: 5px;
   }
