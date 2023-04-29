@@ -21,12 +21,13 @@ def getInfo(character):
         Parse the specific characters
         '''
         def getReadingList(unparsed):
-            res = []
+            res = ""
             tmp = unparsed.split("</a>")
             for i in range(len(tmp)-1):
-                res.append(tmp[i].split(">")[1])
-
-            return str(res)
+                res += tmp[i].split(">")[1] + ", "
+            
+            res = res[:-2]
+            return res
 
 
 
@@ -34,14 +35,26 @@ def getInfo(character):
 
         japaneseChar = data.split("large-12 columns")[1:2]
 
-        strokeCount = data.split("kanji-details__stroke_count")[1].split("/strong")[0].split("strong>")[1].split("<")[0]
+        try:
+            strokeCount = data.split("kanji-details__stroke_count")[1].split("/strong")[0].split("strong>")[1].split("<")[0]
+        except:
+            strokeCount = "N/A"
 
-        grade = data.split("taught in")[1].split("</strong")[0].split("strong>")[1]
+        try:
+            grade = data.split("taught in")[1].split("</strong")[0].split("strong>")[1]
+        except:
+            grade = "N/A"
 
-        jlptLevel = data.split("JLPT level")[1].split("</")[0].split(">")[1]
+        try:
+            jlptLevel = data.split("JLPT level")[1].split("</")[0].split(">")[1]
+        except:
+            jlptLevel = "N/A"
 
-        english = data.split("row kanji-details--section")[1].split("kanji-details__main-meanings\">")[1]
-        english = english.split("</div>")[0].strip()
+        try:
+            english = data.split("row kanji-details--section")[1].split("kanji-details__main-meanings\">")[1]
+            english = english.split("</div>")[0].strip()
+        except:
+            english = "N/A"
 
         try:
             kunReading = data.split("<div class=\"kanji-details__main-readings\">")[1]
@@ -50,7 +63,7 @@ def getInfo(character):
             kunReading = kunReading.split("</dd>")[0].strip()
             kunReading = getReadingList(kunReading)
         except:
-            print("nada")
+            kunReading = "N/A"
 
         
 
@@ -61,7 +74,7 @@ def getInfo(character):
             onReading = onReading.split("</dd>")[0].strip()
             onReading = getReadingList(onReading)
         except:
-            print("e")
+            onReading = "N/A"
 
     
     results = {}

@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import subprocess
 import base64
+
+import json
 
 
 import testJisho as informer
@@ -97,19 +99,21 @@ def displayKanjiInformation():
         #Jisho Webscrape
         res = informer.getInfo(sentKanji['kanji'])
 
+        json_obj = json.dumps(res, indent=4)
+
         #Write the information to a file to grab later
-        fileWrite = open("info.txt", "w", encoding='utf-8')
-        fileWrite.write(str(res))
+        fileWrite = open("info.json", "w", encoding='utf-8')
+        fileWrite.write(json_obj)
         fileWrite.close()
 
         return 'dong'
     if request.method == 'GET':
         #Read the data, send back to front end
-        fileRead = open("info.txt", "r", encoding="utf-8")
-        res = fileRead.read()
+        fileRead = open("info.json", "r", encoding="utf-8")
+        json_obj = json.load(fileRead)
         fileRead.close()
         
-        return res
+        return jsonify(json_obj)
 
 
 if __name__ == '__main__':

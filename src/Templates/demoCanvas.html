@@ -163,37 +163,37 @@
         
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4 && xhr.status == 200){
-                const data = xhr.responseText;
+                const data = JSON.parse(xhr.responseText);
                 console.log(data);
+
                 console.log('received kanji' + receivedKanji);
                 var kanjiSymbol = receivedKanji;
-                
-                var kanjilabel = 'Kanji: ';
-                var strokeCountLabel = 'Stroke count: ';
-
-                
-                splitData = data.split(', \'');
-                console.log(splitData)
-                // middle = firstSplit.slice(1, firstSplit.length);
-                // middleSplit = middle
-                // console.log(middle);
 
                 var decimalValue = receivedKanji.charCodeAt(0);
                 console.log(decimalValue);
-
                 hexString = decimalValue.toString(16);
                 console.log(hexString);
 
+
                 
+                var kanjilabel = 'Kanji: ';
+                var strokeCountLabel = 'Stroke count: ';
+                var grade = "Grade: ";
+                var jlpt = "JLPT: ";
+                var meanings = "Meanings: ";
+                var kunyomi = "Kunyomi: ";
+                var onyomi = "Onyomi: ";
+
+
                 
                 document.getElementById('kanji-gif').src = 'https://raw.githubusercontent.com/mistval/kanji_images/master/gifs/' + hexString + '.gif';
                 document.getElementById('kanji-label').innerHTML = kanjilabel + kanjiSymbol ? kanjilabel +  kanjiSymbol : 'N/A';
-                document.getElementById('stroke-count-label').innerHTML = strokeCountLabel + splitData[1] ? splitData[1] : 'N/A';
-                document.getElementById('grade-level-label').innerHTML = splitData[2] ? splitData[2] : 'N/A';
-                document.getElementById('jlpt-level-label').innerHTML = splitData[3] ? splitData[3] : 'N/A';
-                document.getElementById('meanings-paragraph').innerHTML = splitData[4] ? splitData[4] : 'N/A';
-                // document.getElementById('kunyomi-paragraph').innerHTML = middle[4] ? middle[4] : 'N/A';
-                // document.getElementById('onyomi-paragraph').innerHTML = middle[4] ? middle[4] : 'N/A';
+                document.getElementById('stroke-count-label').innerHTML = strokeCountLabel + data['strokeCount'] ? strokeCountLabel + data['strokeCount'] : 'N/A';
+                document.getElementById('grade-level-label').innerHTML = data['grade'] ? grade + data['grade'] : 'N/A';
+                document.getElementById('jlpt-level-label').innerHTML = data['jlptLevel'] ? jlpt + data['jlptLevel'] : 'N/A';
+                document.getElementById('meanings-paragraph').innerHTML = data['english'] ? meanings + data['english'] : 'N/A';
+                document.getElementById('kunyomi-paragraph').innerHTML = data['kunReading'] ? kunyomi + data['kunReading'] : 'N/A';
+                document.getElementById('onyomi-paragraph').innerHTML = data['onReading'] ? onyomi + data['onReading'] : 'N/A';
                 
                 document.getElementById('more-information-paragraph').innerHTML = `For more information: <a href="https://jisho.org/search/${receivedKanji}%23kanji"  target=blank"</a> Jisho`;
                 
