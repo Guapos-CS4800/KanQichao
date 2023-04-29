@@ -86,6 +86,7 @@
     min-width: 0px;
     flex-wrap: wrap;
     font-size: 1em; 
+    max-width: 450px;
 }
 
 #flex-item-right-top-row {
@@ -134,4 +135,21 @@
     
     
     
+}
+
+#meanings-paragraph {
+    /* max-width: 100%; */
+    text-align: left;
+}
+
+#kunyomi-paragraph {
+    text-align: left;
+}
+
+#onyomi-paragraph {
+    text-align: left;
+}
+
+#more-information-paragraph {
+    text-align: left;
 }
