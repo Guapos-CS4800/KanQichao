@@ -111,20 +111,14 @@ def main():
 
     folder = './classifier/kanji_dataset'
     class_names = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
+    class_names.sort()
     
-    print('---------------------')
-    print("Possible Classes:")
     fileCharacters = open("fileCharacters.txt", "w", encoding='utf-8')
     for name in class_names:
         fileCharacters.write(name)
         fileCharacters.write("\n")
     fileCharacters.close()
-    print('---------------------')
 
-    # print(
-    #     "This image most likely belongs to {} with a {:.2f} percent confidence."
-    #     .format(class_names[np.argmax(score)], 100 * np.max(score))
-    # )
 
     temp = np.argpartition(-score, 10)
     result_args = temp[:10]
@@ -136,10 +130,7 @@ def main():
     for index, conf in zip(result_args, result):
       confList.append((conf, index))
 
-    print('---------------------')  
     values = sorted(confList,key=lambda x: x[0], reverse=True)
-    print(values)
-    print('---------------------')
 
     topTen = ''
     for conf, index in values:
@@ -158,3 +149,8 @@ def main():
   # print(testingunicode)
   # t = testingunicode.encode('utf-8').decode('unicode-escape')
   # print(t)
+
+
+
+if __name__ == '__main__':
+  main()
