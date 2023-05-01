@@ -33,24 +33,24 @@ from tensorflow.keras.models import Sequential
 
 
 
-# my_dir = " classifier/kanji_dataset"
+my_dir = "kanji_dataset"
 # Dummy black image/label to setup the ndarray
-# imgs = np.zeros((64,64), np.uint8).reshape(1,64,64) 
-# labels = np.array(['XXX'])
+imgs = np.zeros((64,64), np.uint8).reshape(1,64,64) 
+labels = np.array(['XXX'])
 
-# for item in pathlib.Path(my_dir).glob('**/*.jpg'):
-#   image = np.array(Image.open(item)).reshape(1,64,64)
+for item in pathlib.Path(my_dir).glob('**/*.jpg'):
+  image = np.array(Image.open(item)).reshape(1,64,64)
   
 
-#   imgs = np.concatenate([imgs, image])
-#   parent = os.path.dirname(item).split('/')[-1]
-#   labels = np.concatenate([labels,np.array([parent])])
+  imgs = np.concatenate([imgs, image])
+  parent = os.path.dirname(item).split('/')[-1]
+  labels = np.concatenate([labels,np.array([parent])])
   
 # Delete the dummy picture
-# imgs = np.delete(imgs,0,0)
-# labels = np.delete(labels,0,0)# Save as npz file
-# np.savez_compressed(' classifier/content/kkanji-imgs.npz', imgs)
-# np.savez_compressed(' classifier/content/kkanji-labels.npz', labels)
+imgs = np.delete(imgs,0,0)
+labels = np.delete(labels,0,0)# Save as npz file
+np.savez_compressed('content/kkanji-imgs.npz', imgs)
+np.savez_compressed('content/kkanji-labels.npz', labels)
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 def load(f):
@@ -58,8 +58,8 @@ def load(f):
 
 
 
-X = load('classifier/content/kkanji-imgs.npz')
-Y = load('classifier/content/kkanji-labels.npz') 
+X = load('content/kkanji-imgs.npz')
+Y = load('content/kkanji-labels.npz') 
 
 
 
@@ -101,7 +101,7 @@ img_height = 64
 img_width = 64
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
-'classifier/kanji_dataset',
+'kanji_dataset',
 color_mode='grayscale',
 validation_split=0.2,
 subset="training",
@@ -110,7 +110,7 @@ image_size=(img_height, img_width),
 batch_size=batch_size,)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
-'classifier/kanji_dataset',
+'kanji_dataset',
 validation_split=0.2,
 color_mode='grayscale',
 subset="validation",
@@ -120,7 +120,7 @@ batch_size=batch_size,)
 
 #class_names = train_ds.class_names
 
-folder = './classifier/kanji_dataset'
+folder = './kanji_dataset'
 
 class_names = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
 
@@ -155,7 +155,7 @@ model = Sequential([
     layers.Flatten(),
     layers.Dropout(.2),
     layers.Dense(128, activation='relu'),
-    layers.Dense(15)
+    layers.Dense(100)
 ])
 
 
@@ -171,4 +171,4 @@ history = model.fit(
     epochs=epochs
 )
 
-model.save('classifier/my_model.h5')
+model.save('my_model.h5')
