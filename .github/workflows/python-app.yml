@@ -35,7 +35,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "src/* !src/classifier/kanji_dataset"
+        source: "src/*, !src/classifier/kanji_dataset"
         target: "~/Kanqichao/"
     - name: Execute Reboot of Server
       uses: appleboy/ssh-action@v0.1.9
