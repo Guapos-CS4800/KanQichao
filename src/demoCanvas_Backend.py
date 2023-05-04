@@ -44,7 +44,6 @@ Immediately after a GET request is sent to determine the results
 @app.route('/submit', methods=['GET','POST'])
 def cheetos():
     if request.method =="GET":
-        print('SUBMIT URL: IN GET METHOD')
 
         #Send the predicted characters back to front end
         #Read the results from the file
@@ -53,6 +52,8 @@ def cheetos():
         res = ""
         for line in line_list:
             res += line
+
+        f.close()
 
         return res
 
@@ -79,8 +80,7 @@ def cheetos():
         #Read the top ten kanji
         f = open("classifier/predictedkanji.txt", "r", encoding='utf-8')
         line_list = f.readlines()
-        for line in line_list:
-            print('List of Kanji: ' + line)
+        f.close()
 
         return "OK"
 
@@ -95,7 +95,6 @@ def displayKanjiInformation():
     if request.method == "POST":
         #Get the character to process
         sentKanji = request.get_json()
-        print(sentKanji['kanji'])
         #Jisho Webscrape
         res = informer.getInfo(sentKanji['kanji'])
 
