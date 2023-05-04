@@ -86,6 +86,7 @@
     min-width: 0px;
     flex-wrap: wrap;
     font-size: 1em; 
+    min-width: 450px;
     max-width: 450px;
 }
 
